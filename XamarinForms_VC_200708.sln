@@ -1,0 +1,35 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30225.117
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XamarinForms_VC_200708.Android", "XamarinForms_VC_200708\XamarinForms_VC_200708.Android\XamarinForms_VC_200708.Android.csproj", "{062AFB4A-D9F1-4E23-885B-5D483BA54DCE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XamarinForms_VC_200708", "XamarinForms_VC_200708\XamarinForms_VC_200708\XamarinForms_VC_200708.csproj", "{82E6919A-D936-4994-8174-CC2776DBBC2E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{062AFB4A-D9F1-4E23-885B-5D483BA54DCE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{062AFB4A-D9F1-4E23-885B-5D483BA54DCE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{062AFB4A-D9F1-4E23-885B-5D483BA54DCE}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{062AFB4A-D9F1-4E23-885B-5D483BA54DCE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{062AFB4A-D9F1-4E23-885B-5D483BA54DCE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{062AFB4A-D9F1-4E23-885B-5D483BA54DCE}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{82E6919A-D936-4994-8174-CC2776DBBC2E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{82E6919A-D936-4994-8174-CC2776DBBC2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{82E6919A-D936-4994-8174-CC2776DBBC2E}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{82E6919A-D936-4994-8174-CC2776DBBC2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{82E6919A-D936-4994-8174-CC2776DBBC2E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{82E6919A-D936-4994-8174-CC2776DBBC2E}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0C38F5D3-9E18-4F51-BF4F-C79CAB97AAC8}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!--vgl. BspNavigation/MasterDetail-->
+<MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="XamarinForms_VC_200708.PersonenDb.Navigation.MDP"
+             xmlns:master="clr-namespace:XamarinForms_VC_200708.PersonenDb.Navigation"
+                  xmlns:pages="clr-namespace:XamarinForms_VC_200708.PersonenDb.Pages">
+  <MasterDetailPage.Master>
+    <master:MDPMaster x:Name="MasterPage" />
+  </MasterDetailPage.Master>
+  <MasterDetailPage.Detail>
+    <NavigationPage>
+      <x:Arguments>
+        <pages:PersonenDb_List Title="List of persons"/>
+      </x:Arguments>
+    </NavigationPage>
+  </MasterDetailPage.Detail>
+</MasterDetailPage>

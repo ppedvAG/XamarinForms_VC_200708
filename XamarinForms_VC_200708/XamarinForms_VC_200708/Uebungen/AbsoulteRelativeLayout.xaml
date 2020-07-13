@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="XamarinForms_VC_200708.Uebungen.AbsoulteRelativeLayout">
+    <ContentPage.Content>
+
+        <!--AbsoluteLayout-->
+
+        <!--<AbsoluteLayout>
+            --><!--In einem AbsoluteLayout ist jedem Element eine absolute Position zugeordnet-->
+            <!--Diese wird durch die Property LayouBounds defniert. Die vier Zahlen repräsentieren X-Position, Y-Position, Breite, Höhe-->
+            <!--Die Property LayoutFlags definiert, welche der vier Zahlen in relativen Werten angegeben sind, anstatt in standartmäßigen
+            absoluten Werten--><!--
+
+            <StackLayout AbsoluteLayout.LayoutBounds="0.5,0.02,0.75,0.33"
+                         AbsoluteLayout.LayoutFlags="All"
+                         BackgroundColor="#F7F7F7"
+                         Padding="50,10"
+                         VerticalOptions="CenterAndExpand">
+                <Label Text="$11.95"
+                       FontSize="60"
+                       TextColor="Black"
+                       HorizontalOptions="Center"/>
+                <Button Text="Add $7.99 Credit"
+                        TextColor="White"
+                        BackgroundColor="DarkCyan"
+                        CornerRadius="15"
+                        WidthRequest="100"
+                        FontSize="15"/>
+            </StackLayout>
+
+            <StackLayout AbsoluteLayout.LayoutFlags="All"
+                         AbsoluteLayout.LayoutBounds="0.5,0.4,0.8,0.15"
+                         Padding="7">
+                <Label Text="Why pay for credit?"
+                       FontAttributes="Bold"
+                       HorizontalOptions="CenterAndExpand"/>
+                <Label Text="Because you can reach people who aren't on SkyApp by calling mobile and landline numbers, or spending SMS, at low-cost rates."
+                       HorizontalOptions="CenterAndExpand"
+                       HorizontalTextAlignment="Center"/>
+            </StackLayout>
+
+        </AbsoluteLayout>-->
+
+        <!--RelativeLayout-->
+        <!--In RelativeLayouts ist jedem Element eine Position relativ zum umgebenden oder anderen UI-Elemente zugeordnet-->
+        <!--Den view untenstehenden Constraint-Properties werden ConstraintExpressions zugeordnet, welche definieren, an welchem
+        anderen Objekt und welcher Property die Ralationen gemessen wird und um welchen Faktor und welche Konstante diese verändert wird-->
+
+        <RelativeLayout VerticalOptions="FillAndExpand"
+                        HorizontalOptions="FillAndExpand">
+
+            <StackLayout BackgroundColor="#F7F7F7"
+                         Padding="50,40"
+                         RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.33}"
+                         RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.70}"
+                         RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.15}"
+                         RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.05}">
+                <Label Text="$11.95"
+                       FontSize="55"
+                       TextColor="Black"
+                       HorizontalOptions="CenterAndExpand"
+                       VerticalOptions="Center"/>
+                <Button Text="Add $7.99 Credit"
+                        TextColor="White"
+                        BackgroundColor="DarkCyan"
+                        CornerRadius="15"
+                        FontSize="15"
+                        WidthRequest="250"
+                        VerticalOptions="CenterAndExpand"/>
+            </StackLayout>
+
+            <StackLayout RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.5}"
+                         RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.8}"
+                         RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.1}"
+                         RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.4}">
+                <Label Text="Why pay for credit?"
+                       FontAttributes="Bold"
+                       HorizontalOptions="CenterAndExpand"/>
+                <Label Text="Because you can reach people who aren't on SkyApp by calling mobile and landline numbers, or spending SMS, at low-cost rates."
+                       HorizontalOptions="CenterAndExpand"
+                       HorizontalTextAlignment="Center"/>
+            </StackLayout>
+            
+        </RelativeLayout>
+
+    </ContentPage.Content>
+</ContentPage>

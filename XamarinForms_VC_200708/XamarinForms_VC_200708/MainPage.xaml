@@ -1,0 +1,141 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!--vgl. CodeBehind-->
+
+<!--Jede XAML-Datei hat einen Root-Container, welcher die Art der UI bestimmt. Dieser muss mit der Mutterklasse im CodeBehind übereinstimmen-->
+<!--Im Root-Container werden die in diesem Dokument benutzten Namespaces definiert, sowie der Verweis auf die anhängige Klasse (CodeBehind)-->
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="XamarinForms_VC_200708.MainPage"
+             xmlns:local="clr-namespace:XamarinForms_VC_200708">
+
+    <!--Jeder Container hat eine Resource-Property, in welcher Ressourcen (Objekte, Styles, Converter, ...) für diesen 
+    Container bereit gestellt werden können.-->
+    <ContentPage.Resources>
+        <!--Über das Präfix (Zeichen vor dem Doppelpunkt) wird der entsprechende Namespace angesteuert-->
+        <!--Jede Ressource (außer globalen Styles) benötigen einen Key, über welche diese angersteuert werden können.-->
+        <x:String x:Key="btnText">Hallo Welt, wie gehts?</x:String>
+        <x:Double x:Key="btnFontSize">24.0</x:Double>
+        <local:FactorConverter x:Key="factorCon"/>
+    </ContentPage.Resources>
+
+    <!--Properties können direkt im einleitenden Tag mittels der Attribute gesetzt werden.-->
+    <!--Vertical und HorizontalObptions definieren das Anzeige-Verhalten des UI-Elements in Bezug auf umgebende Objekte-->
+    <!--Padding definiert einen Abstand des UI-Elements zu inneren Elementen-->
+    <ScrollView HorizontalOptions="FillAndExpand"
+                VerticalOptions="FillAndExpand">
+
+        <!--Container, welche die Children-Property besitzen können mehrere Elemente beinhalten-->
+        <StackLayout Orientation="Vertical"
+                 Spacing="10"
+                 HorizontalOptions="FillAndExpand"
+                 VerticalOptions="FillAndExpand">
+
+           <Label Text="Hallo Xamarin"
+               HorizontalOptions="Center"
+               x:Name="Lbl_Moin">
+                <!--Wenn Properties mit komplexeren Elementen gefüllt werden sollen, können diese ausgelagert werden.-->
+                <Label.TextColor>
+                    <!--Unterschiedliche Werte auf verschiedenen OS in derselben Property-->
+                    <!--<OnPlatform Android="Blue" iOS="Red" UWP="Green"/>-->
+
+                    <!--Unterschiedliche Werte auf verschiedenen Geräten in derselben Property-->
+                    <OnIdiom Phone="Red" Tablet="Blue"/>
+                </Label.TextColor>
+            </Label>
+
+            <!--Jedes UI-Element hat eien Standart-Property, auf die direkt zugegriffen werden kann (meißt Text, Children, Content)-->
+            <Label>
+                Auch hallo
+            </Label>
+
+            <!--Button: UI-Element zum Ausführen von Events (Insb. Click-Event)-->
+            <!--Dieser Button nimmt den globalen Button-Style an (vgl. RessourceDict.xaml)-->
+            <!--Mittels einer StaticResource-Bindung kann auf in übergeordneten Container definierte Ressourcen zugegriffen werden-->
+            <Button x:Name="Btn_KlickMich"
+                Text="{StaticResource btnText}"
+                FontSize="{StaticResource btnFontSize}"
+                Clicked="Btn_KlickMich_Clicked"/>
+
+            <!--Grafische Ressourcen müssen in den einzelnen OS-Projekten abgelegt sein (z.B. Android/Resources/drawable)-->
+            <ImageButton Source="test.png"
+                     WidthRequest="50"/>
+
+            <!--Dieser Button nimmt einen explizieten Button-Style an (vgl. RessourceDict.xaml)-->
+            <Button Text="Noch ein Btn" Style="{StaticResource Sty_Btn_Orange}"/>
+
+            <!--Bindungen-->
+            <!--Mittels Bindungen können Properties von UI-Elementen miteinander verknüpft werden.-->
+            <StackLayout Orientation="Horizontal">
+                <Slider Minimum="0"
+                    Maximum="100"
+                    x:Name="Sdr_Binding"
+                    Value="25"
+                    WidthRequest="250"/>
+                <!--Mittels einer Markup-Extension ({}-Klammern) kann eine Property an eine andere Property gebunden werden. Die Property,
+                welche die Markup-Extension beinhaltet, gilt als Target-Property-->
+                <Label Text="{Binding Source={x:Reference Sdr_Binding}, Path=Value, StringFormat='Wert: {0}'}"/>
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal">
+                <Slider Minimum="0"
+                    Maximum="100"
+                    x:Name="Sdr_Binding_2"
+                    Value="25"
+                    WidthRequest="250"/>
+                <!--Soll der Wert nicht unverandert übertragen werden oder sind die Property-Typen unterschiedlich muss ein Converter
+                zwischengeschlatet werden (vgl. FactorConverter.cs)-->
+                <Label Text="{Binding Source={x:Reference Sdr_Binding_2}, 
+                                  Path=Value, 
+                                  StringFormat='Wert: {0}',
+                                  Converter={StaticResource factorCon}, 
+                                  ConverterParameter=2.5}"/>
+            </StackLayout>
+
+            <Entry Placeholder="Vorname" x:Name="Entry_FirstName"/>
+            <Entry Placeholder="Nachname" x:Name="Entry_LastName"/>
+            <Button Text="OK" x:Name="Btn_Ok" Clicked="Btn_Ok_Clicked"/>
+            <ListView x:Name="LstV_Personen" VerticalOptions="Center" HeightRequest="150">
+                <ListView.ItemTemplate>
+                    <!--Mittels DataTemplates kann das Erscheinen von einzelnen Elementen von ItemControls (hier ListView) defniert werden.
+                    DataTemplates müssen immer ein UI-Element vom Typ Cell beinhalten.-->
+                    <DataTemplate>
+                        <ViewCell>
+                            <!--Innerhalb von ItemControls findet immer ein DataBinding an die Elemente der ItemSource statt (vgl. CodeBehind).
+                            Dadurch finden Kurzbindungen an die Properties der Listenelemente statt.-->
+                            <Label Text="{Binding}"/>
+                            <ViewCell.ContextActions>
+                                <MenuItem Text="Delete" Clicked="Mim_Delete_Clicked" CommandParameter="{Binding}"/>
+                            </ViewCell.ContextActions>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <!--Verweis auf Beispiel-Layouts (vgl. CodeBehind und BspLayouts)-->
+            <StackLayout Orientation="Horizontal"
+                         HorizontalOptions="CenterAndExpand">
+                <Button Text="LayoutUebung"
+                        FontSize="8"
+                        Clicked="Button_Clicked"/>
+                <Button Text="Tabbed"
+                        FontSize="8"
+                        Clicked="Button_Clicked_1"/>
+            </StackLayout>
+
+            <!--Verweis auf MessagingCenter (vgl. CodeBehind und MC_SubscriberPage.xaml)-->
+            <Button Text="MC Sender" Clicked="Btn_MessagingCenter_Clicked"/>
+            
+            <!--Bsps für lokalisierte Steuerelemente (vgl. CodeBehind)-->
+            <Label x:Name="Lbl_Loc"/>
+            <Button x:Name="Btn_Loc"/>
+        </StackLayout>
+    </ScrollView>
+
+    <!--Wird die ContentPage in einer Navigation Page angezeigt, hat diese Zugriff auf die ToolBar-->
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Clear" Clicked="Btn_ClearList_Clicked"/>
+    </ContentPage.ToolbarItems>
+</ContentPage>
